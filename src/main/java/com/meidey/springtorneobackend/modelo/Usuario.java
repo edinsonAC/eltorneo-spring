@@ -3,6 +3,7 @@ package com.meidey.springtorneobackend.modelo;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.sql.Timestamp;
@@ -43,23 +44,28 @@ public class Usuario implements Serializable {
 	private String usuaUsuario;
 
 	// bi-directional many-to-one association to Arbitro
+	@JsonIgnore
 	@OneToMany(mappedBy = "usuario")
 	private List<Arbitro> arbitros;
 
 	// bi-directional many-to-one association to Jugador
+	@JsonIgnore
 	@OneToMany(mappedBy = "usuario")
 	private List<Jugador> jugadors;
 
 	// bi-directional many-to-one association to Tecnico
+	@JsonIgnore
 	@OneToMany(mappedBy = "usuario")
 	private List<Tecnico> tecnicos;
 
 	// bi-directional many-to-one association to TipoUsuario
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "tius_id")
 	private TipoUsuario tipoUsuario;
 
 	// bi-directional many-to-one association to UsuarioPagina
+	@JsonIgnore
 	@OneToMany(mappedBy = "usuario")
 	private List<UsuarioPagina> usuarioPaginas;
 
